@@ -1,15 +1,16 @@
 projectDir=$(dirname $0)
 cd $projectDir
 projectDir=$(pwd)
-mergeFile=$projectDir/data/aof.merge
+mergedFile=$projectDir/data/aof.merged
 binFIle=$projectDir/bin/parseAOF
 step=0
 version="0.5.0"
+splitLines=1000
 header="--------------------parseAOF | version="$version"--------------------"
 
 # delete the generated files before start
-if [ -f "$mergeFile" ]; then
-    rm $mergeFile
+if [ -f "$mergedFile" ]; then
+    rm $mergedFile
 fi
 
 if [ -f "$binFIle" ]; then
@@ -24,7 +25,7 @@ fi
 
 ((step++))
 echo [$step] split the aof file: $1
-split -l 100000 ${1} $projectDir/data/aof.split_
+split -l $splitLines ${1} $projectDir/data/aof.split_
 
 if [ $? -ne 0 ]; then
     echo -e "\033[31;4mfailed\033[0m"
@@ -60,24 +61,36 @@ else
   echo [$step] the bin file exists, skip build
 fi
 
-
 # run project
 ((step++))
 echo [$step] run the bin file
 $binFIle
+if [ $? -ne 0 ]; then
+  echo -e "\033[31;4mfailed\033[0m"
+  exit
+else
+  echo -e "\033[32msuccess\033[0m"
+fi
 
-# contact the parsed files
+# merge the parsed files
 ((step++))
-echo [$step] contact the parsed file
+echo [$step] merge the parsed file
 cd $projectDir/data/
 i=0
 for file in $(ls aof.split_*.parsed)
 do
     ((i++))
     if [ "$i" -eq "1" ];then
-      echo $header >> $mergeFile
+      echo $header >> $mergedFile
     fi
-    cat $file >> $mergeFile
-    echo "\n" >> $mergeFile
+    cat $file >> $mergedFile
+    # echo "\n" >> $mergedFile
     rm $file
 done
+echo -e "merged file: " $mergedFile
+if [ $? -ne 0 ]; then
+  echo -e "\033[31;4mfailed\033[0m"
+  exit
+else
+  echo -e "\033[32msuccess\033[0m"
+fi

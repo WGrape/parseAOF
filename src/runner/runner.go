@@ -11,6 +11,7 @@ import (
 
 func HandleAOFFile(splitFilePath string, parsedFilePath string) error {
 	var lineNumber = 0
+	var lineByte []byte
 
 	f, err := os.Open(splitFilePath)
 	if err != nil {
@@ -21,15 +22,15 @@ func HandleAOFFile(splitFilePath string, parsedFilePath string) error {
 
 	for {
 		lineNumber++
+		lineByte, _, err = buf.ReadLine()
 		if err == io.EOF {
-			global.LogDebug(fmt.Sprintf("The line:%d content=%s", lineNumber, "<<EOF<<\n"))
+			global.LogDebug(fmt.Sprintf("Line:%d |content=%s|\n", lineNumber, "<<EOF<<"))
 			break
 		}
 
-		line, _, _ := buf.ReadLine()
-		content := string(line)
+		content := string(lineByte)
 		plainText, _ := writer.TranslateToPlainText(lineNumber, content)
-		global.LogDebug(fmt.Sprintf("The line:%d content=%s, plainText=%s", lineNumber, content, plainText))
+		global.LogDebug(fmt.Sprintf("Line:%d |content=%s|plainText=%s|\n", lineNumber, content, plainText))
 		if plainText == global.EmptyString {
 			continue
 		}

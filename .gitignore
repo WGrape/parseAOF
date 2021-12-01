@@ -12,8 +12,8 @@
 .DS_Store
 .idea/
 *.txt
-*.aof
 *.split
 *.parsed
-data/
+*.merged
+go.sum
 go.sum

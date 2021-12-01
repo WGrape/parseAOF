@@ -1,0 +1,12 @@
+language: go
+
+go:
+  - 1.16.*
+
+script:
+  - bash test.sh
+
+branches:
+  only:
+    - main
+    - testing

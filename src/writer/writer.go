@@ -8,15 +8,16 @@ import (
 )
 
 func TranslateToPlainText(lineNumber int, content string) (string, error) {
+	var plainText string
 	matchType := parser.MatchLine(content)
 	if matchType == global.MatchTypeCmdStart && lineNumber > 1 {
-		content = fmt.Sprintf("\n")
+		plainText = fmt.Sprintf("\n")
 	} else if matchType == global.MatchTypeArgRaw {
-		content = fmt.Sprintf("%s ", content)
+		plainText = fmt.Sprintf("%s ", content)
 	} else {
-		content = global.EmptyString
+		plainText = global.EmptyString
 	}
-	return content, nil
+	return plainText, nil
 }
 
 func AppendFile(filePath string, content string) (string, error) {

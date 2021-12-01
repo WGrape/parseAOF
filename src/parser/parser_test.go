@@ -13,5 +13,7 @@ func TestMatchLine(t *testing.T) {
 		t.Error(msg)
 		return
 	}
+	msg := fmt.Sprintf("[TestMatchLine 01] Test failed: %d != %d\n", realMatchType, global.MatchTypeArgRaw)
+	t.Error(msg)
 	fmt.Printf("[TestMatchLine] Test success\n")
 }
