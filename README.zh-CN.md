@@ -4,7 +4,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
 - [3、使用](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 输出文件](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 输入文件](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 输出文件](#32)
 
 ## <span id="1">1、特性</span>
 - 代码简洁并且易于定制化
@@ -33,9 +34,23 @@ mv your_aof_file.aof ./parseAOF/data/appendonly.aof
 bash ./start.sh ./data/appendonly.aof
 ```
 
-### <span id="31">(1) 输出文件</span>
+### <span id="31">(1) 输入文件</span>
 
-解析完成后，会在```data```目录下生成```aof.merged```文件，内容如下所示
+开始执行前，传递 [appendonly.aof](./data/appendonly.aof) 文件参数给 ```start.sh``` 脚本, 内容如下所示
+
+```text
+*2
+$6
+SELECT
+$1
+0
+... ...
+```
+
+
+### <span id="32">(2) 输出文件</span>
+
+解析完成后，会在 ```data``` 目录下生成 [aof.merged](./data/aof.merged) 文件，内容如下所示
 
 ```text
 --------------------parseAOF | version=0.5.0--------------------

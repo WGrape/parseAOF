@@ -22,6 +22,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
 - [3、Usage](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The output file](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
 
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
@@ -50,8 +51,21 @@ Run the ```start.sh``` script with the path of the aof file
 bash ./start.sh ./data/appendonly.aof
 ```
 
+### <span id="31">(1) The input file</span>
+
+Before running, pass the [appendonly.aof](./data/appendonly.aof) file to the ```start.sh``` script, the content is as follows
+
+```text
+*2
+$6
+SELECT
+$1
+0
+... ...
+```
+
 ### <span id="31">(1) The output file</span>
-After the parsing is complete, the file ```aof.merged``` will be generated in the directory of ```data```, the content is as follows
+After the parsing is complete, the file [aof.merged](./data/aof.merged) will be generated in the directory of ```data```, the content is as follows
 
 ```text
 --------------------parseAOF | version=0.5.0--------------------
