@@ -21,6 +21,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
 - [3、Usage](#3)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The output file](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
 
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
@@ -30,7 +32,13 @@
 
 ### <span id="21">(1) Linux/Mac</span>
 ```bash
+cd ~
+
 git clone https://github.com/WGrape/parseAOF
+
+# Move your aof file to the data directory of parseAOF.
+# In this way, the files generated during the whole process will be in the data directory, which is convenient for management
+mv your_aof_file.aof ./parseAOF/data/appendonly.aof
 ```
 
 ### <span id="22">(2) Windows</span>
@@ -43,4 +51,29 @@ Run the ```start.sh``` script with the path of the aof file
 bash ./start.sh ./data/appendonly.aof
 ```
 
+### <span id="31">(1) The input file</span>
 
+Before running, pass the [appendonly.aof](./data/appendonly.aof) file to the ```start.sh``` script, the content is as follows
+
+```text
+*2
+$6
+SELECT
+$1
+0
+... ...
+```
+
+### <span id="31">(1) The output file</span>
+After the parsing is complete, the file [aof.merged](./data/aof.merged) will be generated in the directory of ```data```, the content is as follows
+
+```text
+--------------------parseAOF | version=0.5.0--------------------
+SELECT 0 
+set key1 1 
+set key2 2 
+set key3 3 
+sadd key4 1 2 3 4 
+lpush key5 1 2 3 4 5 
+zadd key6 1 2 3 4 5 6 
+```
