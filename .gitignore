@@ -14,6 +14,5 @@
 *.txt
 *.split
 *.parsed
-*.merged
 go.sum
 go.sum
