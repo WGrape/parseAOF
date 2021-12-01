@@ -1,6 +1,9 @@
 ## 目录
-- &nbsp;&nbsp; [1、特性](#1)
-- &nbsp;&nbsp; [2、安装](#1)
+- [1、特性](#1)
+- [2、安装](#2)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
+- [3、使用](#3)
 
 ## <span id="1">1、特性</span>
 - 代码简洁并且易于定制化
@@ -8,15 +11,15 @@
 
 ## <span id="2">2、安装</span>
 
-### (1) Linux / Mac
+### <span id="21">(1) Linux / Mac</span>
 ```bash
 git clone https://github.com/WGrape/parseAOF
 ```
 
-### (2) Windows
+### <span id="22">(2) Windows</span>
 暂不支持
 
-## 3、Usage
+## <span id="3">3、Usage</span>
 执行 ```start.sh``` 脚本，并传入待解析的AOF文件路径
 
 ```bash
