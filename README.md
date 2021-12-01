@@ -21,7 +21,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
 - [3、Usage](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The output file](#31)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The input file](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
 
 ## <span id="1">1、Features</span>
@@ -64,7 +64,7 @@ $1
 ... ...
 ```
 
-### <span id="31">(1) The output file</span>
+### <span id="32">(2) The output file</span>
 After the parsing is complete, the file [aof.merged](./data/aof.merged) will be generated in the directory of ```data```, the content is as follows
 
 ```text
