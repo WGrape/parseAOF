@@ -23,6 +23,7 @@
 - [3、Usage](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The input file](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) Example](#33)
 
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
@@ -32,9 +33,9 @@
 
 ### <span id="21">(1) Linux/Mac</span>
 ```bash
-cd ~
-
 git clone https://github.com/WGrape/parseAOF
+cd parseAOF
+go mod download
 
 # Move your aof file to the data directory of parseAOF.
 # In this way, the files generated during the whole process will be in the data directory, which is convenient for management
@@ -77,3 +78,6 @@ sadd key4 1 2 3 4
 lpush key5 1 2 3 4 5 
 zadd key6 1 2 3 4 5 6 
 ```
+
+### <span id="33">(3) Example</span>
+<img width="770" src="https://user-images.githubusercontent.com/35942268/144350765-6409d955-5f99-4218-81a5-c6ea840a749b.png" />
