@@ -24,6 +24,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The input file](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) Example](#33)
+- [4、Configuration](#4)
 
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
@@ -36,10 +37,6 @@
 git clone https://github.com/WGrape/parseAOF
 cd parseAOF
 go mod download
-
-# Move your aof file to the data directory of parseAOF.
-# In this way, the files generated during the whole process will be in the data directory, which is convenient for management
-mv your_aof_file.aof ./parseAOF/data/appendonly.aof
 ```
 
 ### <span id="22">(2) Windows</span>
@@ -49,12 +46,13 @@ Windows is temporarily not supported
 Run the ```start.sh``` script with the path of the aof file
 
 ```bash
-bash ./start.sh ./data/appendonly.aof
+bash ./start.sh /path/appendonly.aof
 ```
 
 ### <span id="31">(1) The input file</span>
+> Here's an example input file [./data/appendonly.aof](./data/appendonly.aof) for you to test
 
-Before running, pass the [appendonly.aof](./data/appendonly.aof) file to the ```start.sh``` script, the content is as follows
+Before running, pass the path of the aof file to the ```start.sh``` script, the content is as follows
 
 ```text
 *2
@@ -66,6 +64,8 @@ $1
 ```
 
 ### <span id="32">(2) The output file</span>
+> Here's an example output file [./data/aof.merged](./data/aof.merged) for you to test
+
 After the parsing is complete, the file [aof.merged](./data/aof.merged) will be generated in the directory of ```data```, the content is as follows
 
 ```text
@@ -81,3 +81,11 @@ zadd key6 1 2 3 4 5 6
 
 ### <span id="33">(3) Example</span>
 <img width="770" src="https://user-images.githubusercontent.com/35942268/144350765-6409d955-5f99-4218-81a5-c6ea840a749b.png" />
+
+## <span id="4">4、Configuration</span>
+
+[Config file](./config/config.yml) ：```config/config.yml```
+
+| Key | Value | Default | Detail |
+| --- | :----:  | :---: | :---: |
+| debug | ```false``` / ```true``` | ```false``` | debug mode |

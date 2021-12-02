@@ -1,2 +1,2 @@
 ### What is this directory
-The input/output files are all placed here.
+The files generated after running are stored here.
