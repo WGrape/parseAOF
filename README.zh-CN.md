@@ -6,6 +6,7 @@
 - [3、使用](#3)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 输入文件](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 输出文件](#32)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) 使用示例](#33)
 
 ## <span id="1">1、特性</span>
 - 代码简洁并且易于定制化
@@ -15,9 +16,9 @@
 
 ### <span id="21">(1) Linux / Mac</span>
 ```bash
-cd ~
-
 git clone https://github.com/WGrape/parseAOF
+cd parseAOF
+go mod download
 
 # 把需要解析的AOF文件移动到parseAOF的data目录下
 # 这样整个过程中产生的文件都会在此data目录下，方便管理
@@ -62,3 +63,7 @@ sadd key4 1 2 3 4
 lpush key5 1 2 3 4 5 
 zadd key6 1 2 3 4 5 6 
 ```
+
+### <span id="33">(3) 使用示例</span>
+
+<img width="770" src="https://user-images.githubusercontent.com/35942268/144350765-6409d955-5f99-4218-81a5-c6ea840a749b.png" />
