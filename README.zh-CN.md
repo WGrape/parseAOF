@@ -7,6 +7,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 输入文件](#31)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 输出文件](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) 使用示例](#33)
+- [4、配置](#4)
 
 ## <span id="1">1、特性</span>
 - 代码简洁并且易于定制化
@@ -19,16 +20,12 @@
 git clone https://github.com/WGrape/parseAOF
 cd parseAOF
 go mod download
-
-# 把需要解析的AOF文件移动到parseAOF的data目录下
-# 这样整个过程中产生的文件都会在此data目录下，方便管理
-mv your_aof_file.aof ./parseAOF/data/appendonly.aof
 ```
 
 ### <span id="22">(2) Windows</span>
 暂不支持
 
-## <span id="3">3、Usage</span>
+## <span id="3">3、使用</span>
 执行 ```start.sh``` 脚本，并传入待解析的AOF文件路径
 
 ```bash
@@ -36,8 +33,9 @@ bash ./start.sh ./data/appendonly.aof
 ```
 
 ### <span id="31">(1) 输入文件</span>
+> 为了便于测试，可以使用 [./data/appendonly.aof](./data/appendonly.aof) 这个示例输入文件
 
-开始执行前，传递 [appendonly.aof](./data/appendonly.aof) 文件参数给 ```start.sh``` 脚本, 内容如下所示
+开始执行前，传递AOF文件路径参数给 ```start.sh``` 脚本, AOF文件内容如下所示
 
 ```text
 *2
@@ -50,8 +48,9 @@ $1
 
 
 ### <span id="32">(2) 输出文件</span>
+> 为了便于测试，可以使用 [./data/aof.merged](./data/aof.merged) 这个示例输出文件
 
-解析完成后，会在 ```data``` 目录下生成 [aof.merged](./data/aof.merged) 文件，内容如下所示
+解析完成后，会在 ```data``` 目录下生成 [aof.merged](./data/aof.merged) 文件，其内容如下所示
 
 ```text
 --------------------parseAOF | version=0.5.0--------------------
@@ -67,3 +66,11 @@ zadd key6 1 2 3 4 5 6
 ### <span id="33">(3) 使用示例</span>
 
 <img width="770" src="https://user-images.githubusercontent.com/35942268/144350765-6409d955-5f99-4218-81a5-c6ea840a749b.png" />
+
+## <span id="4">4、配置</span>
+
+[配置文件](./config/config.yml) ：```config/config.yml```
+
+| Key | Value | Default | Detail |
+| --- | :----:  | :---: | :---: |
+| debug | ```false``` / ```true``` | ```false``` | 调试模式 |

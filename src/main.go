@@ -23,7 +23,7 @@ func main() {
 				if err != nil {
 					global.LogError(fmt.Sprintf("HandleAOFFile failed: %s | message: %s\n", splitFilePath, err.Error()))
 				} else {
-					global.LogInfo(fmt.Sprintf("HandleAOFFile success: %s => %s\n", fileName, splitFilePath))
+					global.LogInfo(fmt.Sprintf("HandleAOFFile success: %s => %s => %s\n", fileName, splitFilePath, parsedFilePath))
 				}
 			}()
 		}
