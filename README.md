@@ -25,6 +25,8 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) Example](#33)
 - [4、Configuration](#4)
+- [5、Performance](#5)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Testing](#51)
 
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
@@ -97,7 +99,7 @@ zadd key6 1 2 3 4 5 6
 - The average speed to parse is ```50000 lines/s```
 - The maximum size of the aof is 1GB
 
-### <span id="51">(1) 测试</span>
+### <span id="51">(1) Testing</span>
 
 | Id | Lines | Size | Cost | CPU |
 | --- | :----:  | :---: | :---: | :---: |
