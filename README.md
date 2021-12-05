@@ -29,6 +29,7 @@
 ## <span id="1">1、Features</span>
 - Code is clean, simple and easy to customize
 - Speed up parsing through multiple goroutines
+- A list of commands will be generated after parsing for log querying
 
 ## <span id="2">2、Install</span>
 
@@ -89,3 +90,17 @@ zadd key6 1 2 3 4 5 6
 | Key | Value | Default | Detail |
 | --- | :----:  | :---: | :---: |
 | debug | ```false``` / ```true``` | ```false``` | debug mode |
+| maxRoutines | int | 1024 | allow max number of goroutines |
+
+## <span id="5">5、Performance</span>
+
+- The average speed to parse is ```50000 lines/s```
+- The maximum size of the aof is 1GB
+
+### <span id="51">(1) 测试</span>
+
+| Id | Lines | Size | Cost | CPU |
+| --- | :----:  | :---: | :---: | :---: |
+| 1 | 1,2301,117行 | 39MB | 3m50s | <=65% |
+| 2 | 3,435,263行 | 13MB | 1m12s | <=65% |
+| 3 | 1,043,700行 | 6.6MB | 38s | <=65% |

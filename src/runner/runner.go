@@ -7,18 +7,27 @@ import (
 	"os"
 	"parseAOF/src/global"
 	"parseAOF/src/writer"
+	"time"
 )
 
 func HandleAOFFile(splitFilePath string, parsedFilePath string) error {
+	var splitFileResource *os.File
+	var parsedFileResource *os.File
 	var lineNumber = 0
 	var lineByte []byte
+	var err error
 
-	f, err := os.Open(splitFilePath)
+	splitFileResource, err = os.Open(splitFilePath)
 	if err != nil {
 		return err
 	}
-	defer f.Close()
-	buf := bufio.NewReader(f)
+	buf := bufio.NewReader(splitFileResource)
+	parsedFileResource, err = os.OpenFile(parsedFilePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, global.DefaultFileMode)
+	if err != nil {
+		return err
+	}
+	defer splitFileResource.Close()
+	defer parsedFileResource.Close()
 
 	for {
 		lineNumber++
@@ -35,9 +44,12 @@ func HandleAOFFile(splitFilePath string, parsedFilePath string) error {
 			continue
 		}
 
-		_, err = writer.AppendFile(parsedFilePath, plainText)
+		_, err = writer.AppendFile(parsedFileResource, plainText)
 		if err != nil {
 			return err
+		}
+		if lineNumber%100 == 0 {
+			time.Sleep(10 * time.Millisecond)
 		}
 	}
 

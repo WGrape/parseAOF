@@ -24,6 +24,9 @@ const ExitCodeFatal = 1
 const DefaultFileMode = 0644
 const Delta = 1
 
+const ConfigDefaultDebug = false
+const ConfigDefaultMaxRoutines = 1024
+
 var RootDir, _ = os.Getwd()
 var DataDir = path.Clean(fmt.Sprintf("%s/%s", RootDir, "../data"))
 var ConfigFile = path.Clean(fmt.Sprintf("%s/%s", RootDir, "../config/config.yml"))
@@ -33,11 +36,13 @@ var Config AppConfig
 func init() {
 	bytes, err := ioutil.ReadFile(ConfigFile)
 	if err != nil {
-		Config.SetDebug(false)
+		LogError(fmt.Sprintf("Failed to read config: %s\n", err.Error()))
+		Config.SetDebug(ConfigDefaultDebug)
+		Config.SetMaxRoutines(ConfigDefaultMaxRoutines)
 	} else {
 		err = yaml.Unmarshal(bytes, &Config)
 		if err != nil {
-			fmt.Printf("Failed to create config")
+			LogError(fmt.Sprintf("Failed to create config: %s", err.Error()))
 			os.Exit(ExitCodeFatal)
 		}
 	}
