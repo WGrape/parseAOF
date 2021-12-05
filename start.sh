@@ -5,7 +5,10 @@ mergedFile=$projectDir/data/aof.merged
 binFIle=$projectDir/bin/parseAOF
 step=0
 version="0.5.0"
-splitLines=1000
+splitLines=100000
+splitSize=100kb
+aofFileMaxSize=1 # 1G: allow max size of aof file
+srt=$(date +%s)
 header="--------------------parseAOF | version="$version"--------------------"
 
 # delete the generated files before start
@@ -17,15 +20,22 @@ if [ -f "$binFIle" ]; then
     rm $binFIle
 fi
 
-# split the aof file into many sub files
+# check the aof file and split it into many sub files
 if [ ! -n "$1" ] ;then
     echo "please input the aof file"
     exit
 fi
+aofFileSize=$(ls -l $1 | awk '{print $5}')
+aofFileSize=`expr $aofFileSize / 1024 / 1024 / 1024`
+if [ "$aofFileSize" -gt "$aofFileMaxSize" ];then
+  echo "allow max size of aof file: "$aofFileMaxSize"G""(${aofFileSize}G)"
+  exit
+fi
 
 ((step++))
 echo [$step] Start splitting ...
-split -l $splitLines ${1} $projectDir/data/aof.split_
+split -a 5 -b $splitSize ${1} $projectDir/data/aof.split_
+#split -a 3 -l $splitLines ${1} $projectDir/data/aof.split_
 if [ $? -ne 0 ]; then
     echo -e "\033[31;4mfailed\033[0m"
     exit
@@ -103,3 +113,6 @@ if [ $? -ne 0 ]; then
 else
   echo -e "\033[32msuccess\033[0m"
 fi
+
+end=$(date +%s)
+echo "[5] End: $[$end-$srt]s"

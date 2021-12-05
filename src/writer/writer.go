@@ -20,13 +20,8 @@ func TranslateToPlainText(lineNumber int, content string) (string, error) {
 	return plainText, nil
 }
 
-func AppendFile(filePath string, content string) (string, error) {
-	f, err := os.OpenFile(filePath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, global.DefaultFileMode)
-	if err != nil {
-		return global.EmptyString, err
-	}
-
-	_, err = f.WriteString(content)
+func AppendFile(f *os.File, content string) (string, error) {
+	_, err := f.WriteString(content)
 	if err != nil {
 		return global.EmptyString, err
 	}
