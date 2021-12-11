@@ -16,7 +16,9 @@
 
 
 ## Content
-- [1、Features](#1)
+- [1、Introduction](#1)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Features](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Architecture](#11)
 - [2、Install](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
@@ -28,10 +30,16 @@
 - [5、Performance](#5)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Testing](#51)
 
-## <span id="1">1、Features</span>
+## <span id="1">1、Introduction</span>
+A simple and fast tool to parse the AOF file of redis
+
+### <span id="11">(1) Features</span>
 - Code is clean, simple and easy to customize
 - Speed up parsing through multiple goroutines
 - A list of commands will be generated after parsing for log querying
+
+### <span id="12">(2) Architecture</span>
+<img width="700" src="https://user-images.githubusercontent.com/35942268/145674949-1459562a-4555-493b-9aea-ed1d7d3f23a4.png">
 
 ## <span id="2">2、Install</span>
 
