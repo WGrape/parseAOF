@@ -18,7 +18,7 @@
 ## Content
 - [1、Introduction](#1)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Features](#11)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Architecture](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Architecture](#12)
 - [2、Install](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)

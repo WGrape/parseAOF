@@ -1,7 +1,7 @@
 ## 目录
 - [1、介绍](#1)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 特性](#11)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 架构](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 架构](#12)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) 原理](#13)
 - [2、安装](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
