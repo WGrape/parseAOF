@@ -1,5 +1,8 @@
 ## 目录
-- [1、特性](#1)
+- [1、介绍](#1)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 特性](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) 架构](#11)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) 原理](#13)
 - [2、安装](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
@@ -11,10 +14,20 @@
 - [5、性能](#5)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) 测试](#51)
 
-## <span id="1">1、特性</span>
+## <span id="1">1、介绍</span>
+parseAOF是一个简单快速的解析Redis AOF文件的工具
+
+### <span id="11">(1) 特性</span>
+
 - 代码简洁并且易于定制化
 - 通过多协程加速解析AOF文件
 - 解析后会生成命令列表，可用于日志查询等
+
+### <span id="12">(2) 架构</span>
+<img width="700" src="https://user-images.githubusercontent.com/35942268/145674949-1459562a-4555-493b-9aea-ed1d7d3f23a4.png">
+
+### <span id="13">(3) 原理</span>
+关于项目的相关原理可以参考[这篇文章](https://github.com/WGrape/Blog/issues/11)
 
 ## <span id="2">2、安装</span>
 
