@@ -14,5 +14,5 @@
 *.txt
 *.split
 *.parsed
-go.sum
-go.sum
+.vscode
+parseAOF_data

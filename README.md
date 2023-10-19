@@ -16,51 +16,56 @@
 
 
 ## Content
-- [1、Introduction](#1)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Features](#11)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Architecture](#12)
-- [2、Install](#2)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Linux/Mac](#21)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) Windows](#22)
-- [3、Usage](#3)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) The input file](#31)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(2) The output file](#32)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(3) Example](#33)
-- [4、Configuration](#4)
-- [5、Performance](#5)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(1) Testing](#51)
+- [Content](#content)
+- [1、Introduction](#1introduction)
+  - [(1) Features](#1-features)
+  - [(2) Architecture](#2-architecture)
+- [2、Build](#2build)
+- [3、Usage](#3usage)
+  - [(1) The input file](#1-the-input-file)
+  - [(2) The output file](#2-the-output-file)
+  - [(3) Example](#3-example)
+- [4、Performance](#4performance)
+  - [(1) Testing](#1-testing)
 
-## <span id="1">1、Introduction</span>
+## 1、Introduction
 A simple and fast tool to parse the AOF file of redis
 
-### <span id="11">(1) Features</span>
+### (1) Features
 - Code is clean, simple and easy to customize
 - Speed up parsing through multiple goroutines
 - A list of commands will be generated after parsing for log querying
 
-### <span id="12">(2) Architecture</span>
+### (2) Architecture
 <img width="700" src="https://user-images.githubusercontent.com/35942268/145674949-1459562a-4555-493b-9aea-ed1d7d3f23a4.png">
 
-## <span id="2">2、Install</span>
+## 2、Build
 
-### <span id="21">(1) Linux/Mac</span>
 ```bash
 git clone https://github.com/WGrape/parseAOF
 cd parseAOF
 go mod download
+make build
 ```
-
-### <span id="22">(2) Windows</span>
-Windows is temporarily not supported
-
-## <span id="3">3、Usage</span>
-Run the ```start.sh``` script with the path of the aof file
+## 3、Usage
+Run the binary under `bin` dir `parseAOF_<os>_<arch>`  with the path of the aof file
 
 ```bash
-bash ./start.sh /path/appendonly.aof
+./bin/parseAOF_macos_arm64 -i ~/Download/appendonly.aof -r 8
+./bin/parseAOF_macos_arm64 -h
+parse redis aof to readable
+
+Usage:
+  parseAOF [flags]
+
+Flags:
+  -h, --help            help for parseAOF
+  -i, --input string    input AOF file path
+  -o, --output string   output dir path
+  -r, --routines int    max goroutines (default 8)
 ```
 
-### <span id="31">(1) The input file</span>
+### (1) The input file
 > Here's an example input file [./data/appendonly.aof](./data/appendonly.aof) for you to test
 
 Before running, pass the path of the aof file to the ```start.sh``` script, the content is as follows
@@ -74,7 +79,7 @@ $1
 ... ...
 ```
 
-### <span id="32">(2) The output file</span>
+### (2) The output file
 > Here's an example output file [./data/aof.merged](./data/aof.merged) for you to test
 
 After the parsing is complete, the file [aof.merged](./data/aof.merged) will be generated in the directory of ```data```, the content is as follows
@@ -90,27 +95,18 @@ lpush key5 1 2 3 4 5
 zadd key6 1 2 3 4 5 6 
 ```
 
-### <span id="33">(3) Example</span>
-<img width="770" src="https://user-images.githubusercontent.com/35942268/144350765-6409d955-5f99-4218-81a5-c6ea840a749b.png" />
+### (3) Example
+![example](example.png)
 
-## <span id="4">4、Configuration</span>
-
-[Config file](./config/config.yml) ：```config/config.yml```
-
-| Key | Value | Default | Detail |
-| --- | :----:  | :---: | :---: |
-| debug | ```false``` / ```true``` | ```false``` | debug mode |
-| maxRoutines | int | 1024 | allow max number of goroutines |
-
-## <span id="5">5、Performance</span>
+## 4、Performance
 
 - The average speed to parse is ```50000 lines/s```
 - The maximum size of the aof is 1GB
 
-### <span id="51">(1) Testing</span>
+### (1) Testing
 
 | Id | Lines | Size | Cost | CPU |
 | --- | :----:  | :---: | :---: | :---: |
 | 1 | 1,2301,117 | 39MB | 3m50s | <=65% |
 | 2 | 3,435,263 | 13MB | 1m12s | <=65% |
-| 3 | 1,043,700 | 6.6MB | 38s | <=65% |
+| 3 | 357,850 | 8.6MB | 3.47s | <=113% |
