@@ -2,14 +2,11 @@ package global
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
 	"os"
-	"path"
 	"regexp"
 )
 
-const PatternOfAOFFile = "^aof\\.split_[a-z]+$"
+const PatternOfAOFFile = "^aof\\.split_[a-z0-9]+$"
 const PatternOfLineCmdStart = "^\\*\\d$"
 const PatternOfLineArgLen = "^\\$\\d$"
 
@@ -28,25 +25,8 @@ const ConfigDefaultDebug = false
 const ConfigDefaultMaxRoutines = 1024
 
 var RootDir, _ = os.Getwd()
-var DataDir = path.Clean(fmt.Sprintf("%s/%s", RootDir, "../data"))
-var ConfigFile = path.Clean(fmt.Sprintf("%s/%s", RootDir, "../config/config.yml"))
-
-var Config AppConfig
-
-func init() {
-	bytes, err := ioutil.ReadFile(ConfigFile)
-	if err != nil {
-		LogError(fmt.Sprintf("Failed to read config: %s\n", err.Error()))
-		Config.SetDebug(ConfigDefaultDebug)
-		Config.SetMaxRoutines(ConfigDefaultMaxRoutines)
-	} else {
-		err = yaml.Unmarshal(bytes, &Config)
-		if err != nil {
-			LogError(fmt.Sprintf("Failed to create config: %s", err.Error()))
-			os.Exit(ExitCodeFatal)
-		}
-	}
-}
+var DataDir = ""
+var Debug = false
 
 func IsAOFFile(fileName string) bool {
 	matched, _ := regexp.MatchString(PatternOfAOFFile, fileName)
@@ -62,7 +42,7 @@ func GetParsedFilePath(fileName string) string {
 }
 
 func LogDebug(text string) {
-	if Config.GetDebug() {
+	if Debug {
 		fmt.Printf(text)
 	}
 }
